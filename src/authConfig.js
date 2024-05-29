@@ -11,6 +11,11 @@ import { LogLevel } from "@azure/msal-browser";
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/configuration.md 
  */
 
+
+export const graphqlConfig = {
+    graphqlEndpoint: "https://dxtapi.fabric.microsoft.com/v1/workspaces/0e4525ad-0a74-4408-bd04-9b38a4aa1b2c/graphqlapis/0708f508-ccdd-46d8-9e1b-08daffb6f3ae/graphql"
+};
+
 export const msalConfig = {
     auth: {
         clientId: "16404b68-47b7-4456-b7f0-8cc0dfe8307d",

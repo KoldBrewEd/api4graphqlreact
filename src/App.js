@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PageLayout } from './components/PageLayout';
-import { loginRequest } from './authConfig';
+import { loginRequest, graphqlConfig } from './authConfig';
 import { ProfileData } from './components/ProfileData';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from '@azure/msal-react';
 import './App.css';
@@ -26,7 +26,6 @@ const ProfileContent = () => {
   }
 
 async function callGraphQL(accessToken) {
-  const graphQLEndpoint = "https://dxtapi.fabric.microsoft.com/v1/workspaces/0e4525ad-0a74-4408-bd04-9b38a4aa1b2c/graphqlapis/0708f508-ccdd-46d8-9e1b-08daffb6f3ae/graphql";
   const query = `query {
     publicholidays (filter: {countryRegionCode: {eq:"US"}, date: {gte: "2024-01-01T00:00:00.000Z", lte: "2024-12-31T00:00:00.000Z"}}) {
       items {
@@ -36,7 +35,7 @@ async function callGraphQL(accessToken) {
       }
     }
   }`;
-  fetch(graphQLEndpoint, {
+  fetch(graphqlConfig.graphqlEndpoint, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
