@@ -11,10 +11,14 @@ import { LogLevel } from "@azure/msal-browser";
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/configuration.md 
  */
 
+export const graphqlConfig = {
+    graphqlEndpoint: "`Enter_the_GraphQL_Endpoint_Here"
+};
+
 export const msalConfig = {
     auth: {
-        clientId: "client ID",
-        authority: "https://login.microsoftonline.com/"tenant ID"",
+        clientId: "Enter_the_Application_Id_Here",
+        authority: "https://login.microsoftonline.com/Enter_the_Tenant_Info_Here",
         redirectUri: "http://localhost:3000",
     },
     cache: {
