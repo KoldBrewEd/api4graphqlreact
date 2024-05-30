@@ -5,13 +5,15 @@ import { ProfileData } from './components/ProfileData';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from '@azure/msal-react';
 import './App.css';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 
 /**
 * Renders information about the signed-in user or a button to retrieve data about the user
 */
 const ProfileContent = () => {
   const { instance, accounts } = useMsal();
-  let [graphqlData, setGraphqlData] = useState(null);
+  const [graphqlData, setGraphqlData] = useState(null);
+  const [display, setDisplay] = useState(false);
 
   function RequestGraphQL() {
       // Silently acquires an access token which is then attached to a request for GraphQL data
@@ -26,6 +28,7 @@ const ProfileContent = () => {
   }
 
 async function callGraphQL(accessToken) {
+  setDisplay(true);
   const query = `query {
     publicholidays (filter: {countryRegionCode: {eq:"US"}, date: {gte: "2024-01-01T00:00:00.000Z", lte: "2024-12-31T00:00:00.000Z"}}) {
       items {
@@ -56,8 +59,17 @@ async function callGraphQL(accessToken) {
           {graphqlData ? (
               <ProfileData graphqlData={graphqlData} />
           ) : (
-              <Button variant="secondary" onClick={RequestGraphQL}>
-                  Query Fabric API for GraphQL Data
+              <Button variant="primary" onClick={RequestGraphQL}>
+                  Query Fabric API for GraphQL Data 
+                  {display ? (
+                        <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />
+                    ) : null}
               </Button>
           )}
       </>
