@@ -31,8 +31,7 @@ export const PageLayout = (props) => {
       <br />
       <h5>
         <center>
-          Welcome to the Microsoft Authentication Library For JavaScript -
-          React SPA Tutorial
+          Welcome to the Microsoft Fabric API for GraphQL Tutorial
         </center>
       </h5>
       <br />
